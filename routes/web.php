@@ -1,6 +1,9 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HelperController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('gallery');
-});
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/home', function () {
-    return view('home');
-});
-Route::get('/add', function () {
-    return view('add');
-});
-Route::get('/show', function () {
-    return view('show');
-});
+Route::get('/', [GalleryController::class, 'index']);
+Route::get('/about', [HelperController::class, 'about']);
+Route::get('/home', [HelperController::class, 'home']);
+Route::get('/add', [GalleryController::class, 'add']);
+Route::get('/show/{id}', [GalleryController::class, 'show']);
+Route::get('/edit/{id}', [GalleryController::class, 'edit']);
+Route::post('/store', [GalleryController::class, 'store']);
+Route::post('/update/{id}', [GalleryController::class, 'update']);
+Route::get('/delete/{id}', [GalleryController::class, 'delete']);
